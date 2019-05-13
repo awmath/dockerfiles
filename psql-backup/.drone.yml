@@ -4,6 +4,7 @@ name: psql-backup
 steps:
   - name: docker
     image: plugins/docker
+    context: ./psql-backup
     settings:
       repo: awmath/psql-backup
       username:
@@ -11,3 +12,5 @@ steps:
       password:
         from_secret: docker_password
     
+trigger:
+  cron: [ nightly ]

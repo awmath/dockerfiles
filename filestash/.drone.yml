@@ -6,6 +6,7 @@ steps:
     image: plugins/docker
     settings:
       repo: awmath/filestash
+      context: ./filestash
       username:
         from_secret: docker_username
       password:
@@ -13,3 +14,6 @@ steps:
     when:
       branch:
       - master
+
+trigger:
+  cron: [ weekly ]

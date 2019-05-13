@@ -5,17 +5,19 @@ steps:
   - name: tags
     image: alpine
     commands:
-      - sh version-tags.sh > .tags
+      - sh ./minecraft-bedrock-server/version-tags.sh > .tags
 
   - name: docker
     image: plugins/docker
     settings:
-      repo: 
-        from_secret: docker_repo
+      context: ./minecraft-bedrock-server
+      repo: awmath/minecraft-bedrock-server 
       registry: 
-        from_secret: docker_registry
+        from_secret: custom_docker_registry
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
-    
+
+trigger:
+  cron: [ nightly ]

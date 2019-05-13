@@ -4,6 +4,7 @@ name: keeweb-http
 steps:
   - name: docker
     image: plugins/docker
+    context: ./keeweb-http
     settings:
       repo: awmath/keeweb-http
       username:
@@ -11,3 +12,5 @@ steps:
       password:
         from_secret: docker_password
     
+trigger:
+  cron: [ nightly ]
