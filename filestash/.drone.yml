@@ -15,5 +15,24 @@ steps:
       branch:
       - master
 
+---
+
+kind: pipeline
+name: filestash-cron
+
+steps:
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: awmath/filestash
+      context: ./filestash
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+    when:
+      branch:
+      - master
+
 trigger:
   cron: [ weekly ]

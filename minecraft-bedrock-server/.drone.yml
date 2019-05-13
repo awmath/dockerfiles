@@ -19,5 +19,28 @@ steps:
       password:
         from_secret: docker_password
 
+---
+
+kind: pipeline
+name: minecraft-bedrock-server-cron
+
+steps:
+  - name: tags
+    image: alpine
+    commands:
+      - sh ./minecraft-bedrock-server/version-tags.sh > .tags
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      context: ./minecraft-bedrock-server
+      repo: awmath/minecraft-bedrock-server 
+      registry: 
+        from_secret: custom_docker_registry
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+
 trigger:
   cron: [ nightly ]
