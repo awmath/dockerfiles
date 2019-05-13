@@ -7,6 +7,7 @@ steps:
     settings:
       repo: awmath/filestash
       context: ./filestash
+      dockerfile: ./filestash/Dockerfile
       username:
         from_secret: docker_username
       password:
@@ -26,6 +27,7 @@ steps:
     settings:
       repo: awmath/filestash
       context: ./filestash
+      dockerfile: ./filestash/Dockerfile
       username:
         from_secret: docker_username
       password:

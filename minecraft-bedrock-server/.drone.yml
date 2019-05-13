@@ -11,13 +11,19 @@ steps:
     image: plugins/docker
     settings:
       context: ./minecraft-bedrock-server
-      repo: awmath/minecraft-bedrock-server 
+      dockerfile: ./minecraft-bedrock-server/Dockerfile
+      repo: 
+        from_secret: repo
       registry: 
         from_secret: custom_docker_registry
       username:
-        from_secret: docker_username
+        from_secret: custom_docker_username
       password:
-        from_secret: docker_password
+        from_secret: custom_docker_password
+
+trigger:
+  event:
+    - push
 
 ---
 
@@ -34,13 +40,21 @@ steps:
     image: plugins/docker
     settings:
       context: ./minecraft-bedrock-server
-      repo: awmath/minecraft-bedrock-server 
+      dockerfile: ./minecraft-bedrock-server/Dockerfile
+      repo:
+        from_secret: repo
       registry: 
         from_secret: custom_docker_registry
       username:
-        from_secret: docker_username
+        from_secret: custom_docker_username
       password:
-        from_secret: docker_password
+        from_secret: custom_docker_password
 
 trigger:
   cron: [ nightly ]
+
+---
+
+kind: secret
+name: repo
+data: uYMtnS1s3EJWgkBqApkTkd0D0Cs2H4vF7p8uyHTy-_ezSKUhq8-ai2ENLnCetZde6Bfyz6LSkLXC1vu_8HlJ2uSgoKjSN_0IrFInK4frtQj_IG5j

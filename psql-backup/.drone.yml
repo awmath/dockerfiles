@@ -4,13 +4,18 @@ name: psql-backup
 steps:
   - name: docker
     image: plugins/docker
-    context: ./psql-backup
     settings:
+      context: ./psql-backup
+      dockerfile: ./psql-backup/Dockerfile
       repo: awmath/psql-backup
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
+
+trigger:
+  event:
+    - push
 
 ---
 
@@ -20,8 +25,9 @@ name: psql-backup-cron
 steps:
   - name: docker
     image: plugins/docker
-    context: ./psql-backup
     settings:
+      context: ./psql-backup
+      dockerfile: ./psql-backup/Dockerfile
       repo: awmath/psql-backup
       username:
         from_secret: docker_username
