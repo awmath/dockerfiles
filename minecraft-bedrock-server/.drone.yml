@@ -1,0 +1,21 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: tags
+    image: alpine
+    commands:
+      - sh version-tags.sh > .tags
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: 
+        from_secret: docker_repo
+      registry: 
+        from_secret: docker_registry
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+    
