@@ -1,5 +1,5 @@
 kind: pipeline
-name: default
+name: keeweb-http
 
 steps:
   - name: docker
