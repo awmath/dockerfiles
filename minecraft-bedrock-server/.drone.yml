@@ -13,7 +13,7 @@ steps:
       context: ./minecraft-bedrock-server
       dockerfile: ./minecraft-bedrock-server/Dockerfile
       repo: 
-        from_secret: repo
+        from_secret: custom_repo_minecraft_bedrock_server
       registry: 
         from_secret: custom_docker_registry
       username:
@@ -42,7 +42,7 @@ steps:
       context: ./minecraft-bedrock-server
       dockerfile: ./minecraft-bedrock-server/Dockerfile
       repo:
-        from_secret: repo
+        from_secret: custom_repo_minecraft_bedrock_server
       registry: 
         from_secret: custom_docker_registry
       username:
@@ -53,8 +53,3 @@ steps:
 trigger:
   cron: [ nightly ]
 
----
-
-kind: secret
-name: repo
-data: uYMtnS1s3EJWgkBqApkTkd0D0Cs2H4vF7p8uyHTy-_ezSKUhq8-ai2ENLnCetZde6Bfyz6LSkLXC1vu_8HlJ2uSgoKjSN_0IrFInK4frtQj_IG5j
