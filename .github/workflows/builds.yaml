@@ -25,18 +25,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: awmath/psql-backup
-	python-matrx:
-		runs-on: ubuntu-latest
-		strategy:
+  python-matrx:
+    runs-on: ubuntu-latest
+    strategy:
       matrix:
         python-version: [3]
 
-		steps:
+    steps:
       - name: geopython
         uses: docker/build-push-action@v1
         with:
           path: geopython/
-					build-args: VERSION=${{ matrix.python-version }}
+          build-args: VERSION=${{ matrix.python-version }}
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: awmath/geopython
