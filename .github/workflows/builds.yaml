@@ -18,6 +18,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: awmath/keeweb-http
+          tags: latest
       - name: psql-backup
         uses: docker/build-push-action@v1
         with:
@@ -25,7 +26,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: awmath/psql-backup
-  python-matrx:
+          tags: latest
+  python-matrix:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -41,4 +43,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: awmath/geopython
+          tags: latest,${{ matrix.python-version }}
 
