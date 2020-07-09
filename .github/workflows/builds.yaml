@@ -32,6 +32,7 @@ jobs:
         python-version: [3]
 
     steps:
+      - uses: actions/checkout@v2
       - name: geopython
         uses: docker/build-push-action@v1
         with:
