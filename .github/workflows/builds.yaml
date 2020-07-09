@@ -1,0 +1,47 @@
+name: Build Docker images
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron:  '0 22 * * 3'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the repository
+      - uses: actions/checkout@v2
+      - name: keeweb-http
+        uses: docker/build-push-action@v1
+        with:
+          path: keeweb-http/
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+          repository: awmath/keeweb-http
+          tags: latest
+      - name: psql-backup
+        uses: docker/build-push-action@v1
+        with:
+          path: psql-backup/
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+          repository: awmath/psql-backup
+          tags: latest
+  python-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: geopython
+        uses: docker/build-push-action@v1
+        with:
+          path: geopython/
+          build_args: VERSION=${{ matrix.python-version }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+          repository: awmath/geopython
+          tags: latest,${{ matrix.python-version }}
+
