@@ -1,4 +1,4 @@
-FROM podman
+FROM quay.io/podman/stable
 
 ENV HOME="/config"
 
