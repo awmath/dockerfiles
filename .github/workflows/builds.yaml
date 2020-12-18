@@ -17,18 +17,21 @@ jobs:
           context: keeweb-http/
           file: keeweb-http/Dockerfile
           tags: awmath/keeweb-http:latest
+          push: true
       - name: psql-backup
         uses: docker/build-push-action@v2
         with:
           context: psql-backup/
           file: psql-backup/Dockerfile
           tags: awmath/psql-backup:latest
+          push: true
       - name: code-server
         uses: docker/build-push-action@v2
         with:
           context: code-server/
           file: code-server/Dockerfile
           tags: awmath/code-server:latest
+          push: true
 
   python-matrix:
     runs-on: ubuntu-latest
