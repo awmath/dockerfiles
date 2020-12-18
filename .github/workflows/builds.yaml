@@ -16,29 +16,28 @@ jobs:
       - name: Login to Registry
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
       - name: keeweb-http
         uses: docker/build-push-action@v2
         with:
           context: keeweb-http/
           file: keeweb-http/Dockerfile
-          tags: ghcr.io/awmath/keeweb-http:latest
+          tags: awmath/keeweb-http:latest
           push: true
       - name: psql-backup
         uses: docker/build-push-action@v2
         with:
           context: psql-backup/
           file: psql-backup/Dockerfile
-          tags: ghcr.io/awmath/psql-backup:latest
+          tags: awmath/psql-backup:latest
           push: true
       - name: code-server
         uses: docker/build-push-action@v2
         with:
           context: code-server/
           file: code-server/Dockerfile
-          tags: ghcr.io/awmath/code-server:latest
+          tags: awmath/code-server:latest
           push: true
 
   python-matrix:
